@@ -1,0 +1,9 @@
+recording,annotator,total_annotated_breaths,breaths_in_flagged_windows,flagged_breath_percentage,flagged_windows,total_windows
+13,1,160,7,4.375,3,95
+13,2,165,7,4.242424242424242,3,95
+15,1,110,0,0.0,0,95
+15,2,124,0,0.0,0,95
+27,1,82,1,1.2195121951219512,4,95
+27,2,89,7,7.865168539325842,4,95
+46,1,95,0,0.0,0,95
+46,2,123,0,0.0,0,95
