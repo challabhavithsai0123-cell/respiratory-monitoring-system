@@ -57,6 +57,10 @@ The committed evaluation reports show that the signal-processing baseline perfor
 
 For reproducibility, consult the CSV reports in `results/reports/` alongside the analysis scripts. Do not compare metrics from different splits as if they came from the same test set.
 
+## Evaluation documentation
+
+- [Model evaluation notes](docs/evaluation-notes.md) — grouped cross-validation and pooled out-of-fold metrics, interpretation, and reproducibility checklist.
+
 ## Dashboard
 
 The hosted Streamlit app provides sections for:
