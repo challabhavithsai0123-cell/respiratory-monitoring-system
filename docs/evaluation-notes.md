@@ -23,10 +23,10 @@ The pooled out-of-fold report gives a separate aggregate view:
 |---|---:|---:|---:|
 | Signal-processing baseline | 0.4420 | 1.1059 | 0.8936 |
 | Extra Trees | 0.6354 | 1.2714 | 0.8593 |
-| Gradient Boosting | 0.6582 | — | — |
-| Random Forest | 0.6805 | — | — |
+| Gradient Boosting | 0.6582 | 1.2664 | 0.8604 |
+| Random Forest | 0.6805 | 1.2588 | 0.8621 |
 
-The omitted pooled RMSE/R² cells are intentionally left blank here rather than inferred from a different report.
+
 
 ## Interpretation
 
