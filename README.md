@@ -202,3 +202,8 @@ B.Tech — Mechatronics Engineering
 ---
 
 **Project areas:** Biomedical Signal Processing · Respiratory Analysis · Python · SciPy · Machine Learning · Streamlit
+
+
+## Engineering portfolio website
+
+The responsive portfolio site is maintained in the [`docs/`](docs/) directory. To publish it free with GitHub Pages, open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/docs`, then save. GitHub will show the published URL in that section once deployment completes.
