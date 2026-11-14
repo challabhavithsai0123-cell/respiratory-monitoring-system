@@ -1,99 +1,82 @@
-# Intelligent Respiratory Monitoring and Analysis System
+INTELLIGENT RESPIRATORY MONITORING AND ANALYSIS SYSTEM
 
-A Python-based biomedical signal-processing project for respiratory waveform analysis, automatic breath detection, respiratory-rate estimation, model evaluation, and signal-quality investigation.
+A Python-based biomedical signal processing and analysis system for respiratory waveform filtering, automatic breath detection, respiratory rate estimation, machine learning evaluation, and signal-quality assessment.
 
-**Live dashboard:** https://respiratory-monitoring-system.streamlit.app/  
-**Dataset:** [PhysioNet BIDMC PPG and Respiration Dataset](https://physionet.org/content/bidmc/1.0.0/)
+Live Dashboard: [https://respiratory-monitoring-system.streamlit.app/](https://respiratory-monitoring-system.streamlit.app/)
+GitHub Repository: [https://github.com/challabhavithsai0123-cell/respiratory-monitoring-system](https://github.com/challabhavithsai0123-cell/respiratory-monitoring-system)
 
-> **Scope:** This is an engineering and research prototype. It analyzes recorded signals and is not a clinically validated medical device.
+1. Project Overview
+The Intelligent Respiratory Monitoring and Analysis System is a software-based biomedical engineering project designed to process and analyze respiratory signals. The system uses recorded physiological data from the PhysioNet BIDMC PPG and Respiration Dataset to investigate respiratory waveform characteristics, detect breathing events, estimate respiratory rates, and evaluate different estimation approaches. A Streamlit dashboard provides interactive visualization of respiratory signals, analysis results, model evaluation metrics, and signal-quality investigations. The project focuses on respiratory signal processing, algorithm development, data-driven analysis, and research-oriented visualization.
+2. Key Features
 
-## Project overview
+* Respiratory signal filtering using a Butterworth bandpass filter.
+* Automatic breath detection using peak detection techniques.
+* Respiratory rate estimation from detected breathing events.
+* Respiratory feature extraction using time-domain and frequency-domain methods.
+* Machine learning model development and evaluation.
+* Recording-wise and cross-validation performance analysis.
+* Signal-quality and artifact investigation.
+* Interactive respiratory waveform visualization.
+* Web-based dashboard using Streamlit and Plotly.
 
-The system processes respiratory recordings from the BIDMC dataset and compares conventional signal-processing methods with machine-learning regressors. A Streamlit dashboard provides interactive access to selected recordings, analysis outputs, evaluation reports, and research visualizations.
+3. System Architecture
+The project follows a modular processing pipeline:
+4. Dataset Acquisition: Load respiratory recordings and reference breath annotations from the PhysioNet BIDMC dataset.
+5. Signal Processing: Apply digital filtering to extract relevant respiratory waveform characteristics.
+6. Breath Detection: Identify candidate breathing events from the filtered signal.
+7. Feature Extraction: Calculate statistical, temporal, and spectral features.
+8. Respiratory Rate Estimation: Estimate breathing rate using detected events.
+9. Machine Learning Evaluation: Compare Random Forest, Extra Trees, and Gradient Boosting models against the baseline signal-processing approach.
+10. Signal Quality Analysis: Investigate annotation disagreements, signal artifacts, and recording-level performance.
+11. Visualization: Present the results through an interactive Streamlit dashboard.
+12. Technologies Used
 
-The project is organized around this pipeline:
+* Programming Language: Python 3.12
+* Signal Processing: SciPy
+* Numerical Computing: NumPy
+* Data Analysis: Pandas
+* Visualization: Matplotlib, Plotly
+* Dashboard: Streamlit
+* Machine Learning: Scikit-learn
+* Model Storage: Joblib
+* Dataset: PhysioNet BIDMC
 
-```text
-BIDMC recordings + reference annotations
-                 |
-                 v
-       Signal preprocessing
-                 |
-                 v
-       Breath-event detection
-                 |
-                 v
-      Respiratory-rate estimates
-                 |
-       +---------+----------+
-       |                    |
-       v                    v
- Feature extraction   Signal-quality audit
-       |
-       v
- Grouped model evaluation
-       |
-       v
- Reports, plots and dashboard
-```
+5. Machine Learning Models
+The project evaluates three machine learning approaches:
 
-## What is implemented
+* Random Forest Regressor
+* Extra Trees Regressor
+* Gradient Boosting Regressor
 
-- Butterworth band-pass filtering of respiratory waveforms.
-- Automatic breath-event detection using peak-based methods.
-- Respiratory-rate estimation from detected events.
-- Comparison against reference breath annotations.
-- Time-domain and frequency-domain feature extraction.
-- Evaluation of Random Forest, Extra Trees, and Gradient Boosting regressors.
-- Recording-wise data separation and grouped cross-validation to reduce recording-level leakage.
-- Signal-quality and annotation-disagreement investigations.
-- Interactive Streamlit dashboard with Plotly visualizations.
+Their performance is compared with a conventional signal-processing baseline. The evaluation uses recording-wise data separation to reduce data leakage between training and testing recordings.
 
-## Research approach and findings
+Important research observation: The baseline signal-processing approach performed better on average during grouped cross-validation. Extra Trees achieved a slightly lower MAE than the baseline on the held-out test recordings. Therefore, machine learning is treated as an experimental comparison rather than a universally superior estimator.
 
-The machine-learning models are evaluated against a conventional signal-processing baseline rather than assumed to be better.
+6. Interactive Dashboard
+The deployed Streamlit application contains six sections:
+7. Overview: Project summary and system architecture.
+8. Signal Explorer: Interactive respiratory waveform exploration.
+9. Respiratory Analysis: Breath detection and respiratory rate analysis.
+10. Model Evaluation: Comparison of machine learning models and baseline performance.
+11. Signal Quality: Investigation of artifacts and signal-quality characteristics.
+12. Research Graphs: Visualization of experimental findings and evaluation results.
 
-The committed evaluation reports show that the signal-processing baseline performed strongly in grouped cross-validation. Model rankings vary between evaluation protocols, so results should be interpreted with the split strategy and dataset limitations in mind.
+Live Application: [https://respiratory-monitoring-system.streamlit.app/](https://respiratory-monitoring-system.streamlit.app/)
 
-For reproducibility, consult the CSV reports in `results/reports/` alongside the analysis scripts. Do not compare metrics from different splits as if they came from the same test set.
+7. Dataset
+PhysioNet BIDMC PPG and Respiration Dataset
+Source: [https://physionet.org/content/bidmc/1.0.0/](https://physionet.org/content/bidmc/1.0.0/)
 
-## Dashboard
+The original research uses 53 recordings containing respiratory and physiological signals with reference annotations. The deployed dashboard includes two selected respiratory signal recordings to keep the hosted application lightweight. The complete original dataset is not included in this GitHub repository.
 
-The hosted Streamlit app provides sections for:
-
-- Project overview
-- Respiratory signal exploration
-- Respiratory analysis
-- Model evaluation
-- Signal-quality investigation
-- Research graphs
-
-The public deployment includes two selected recordings to keep the hosted application lightweight. The complete BIDMC dataset is not bundled with this repository.
-
-## Dataset
-
-The project uses the [BIDMC PPG and Respiration Dataset, version 1.0.0](https://physionet.org/content/bidmc/1.0.0/), which contains 53 recordings with physiological signals and reference annotations.
-
-Download the dataset from PhysioNet and place the extracted CSV data in the directory expected by the processing scripts. The feature-extraction script currently expects:
-
-```text
-data/raw/BIDMC/bidmc-1.0.0/bidmc_csv/
-```
-
-The dashboard reads the selected deployment recordings from:
-
-```text
-data/deployment/
-```
-
-## Repository structure
-
-```text
-respiratory-monitoring-system/
+8. Project Structure
+Respiratory_Monitoring_System/
 ├── dashboard/
 │   └── app.py
 ├── data/
-│   └── deployment/          # Selected sample recordings for the dashboard
+│   └── deployment/
+│       ├── bidmc_01_Signals.csv
+│       └── bidmc_13_Signals.csv
 ├── results/
 │   ├── graphs/
 │   ├── models/
@@ -107,94 +90,64 @@ respiratory-monitoring-system/
 │   ├── train_models.py
 │   └── signal_quality_audit.py
 ├── requirements.txt
-└── README.md
-```
+├── README.md
+└── .gitignore
+9. Installation and Execution
+Prerequisites:
 
-## Run locally
+* Python 3.12
+* Git
+* Internet connection
 
-### Requirements
-
-- Python 3.10 or newer (Python 3.12 is used for development)
-- Git
-- Internet access to obtain the original dataset if you want to reproduce the full analysis
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/challabhavithsai0123-cell/respiratory-monitoring-system.git
+Clone the repository:
+git clone [https://github.com/challabhavithsai0123-cell/respiratory-monitoring-system.git](https://github.com/challabhavithsai0123-cell/respiratory-monitoring-system.git)
 cd respiratory-monitoring-system
-```
 
-### 2. Create and activate a virtual environment
-
-**Windows PowerShell**
-
-```powershell
+Create a virtual environment:
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
 
-**Linux / macOS**
+Activate the environment (Windows PowerShell):
+..venv\Scripts\Activate.ps1
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-python -m pip install --upgrade pip
+Install dependencies:
 pip install -r requirements.txt
-```
 
-### 4. Launch the dashboard
-
-```bash
+Run the dashboard:
 python -m streamlit run dashboard/app.py
-```
 
-Open the local URL printed by Streamlit.
+Open the local URL displayed in the terminal to access the dashboard.
 
-## Reproducing the analysis
+Note: The deployment folder contains only two sample recordings. Reproducing the complete original research analysis requires obtaining the full BIDMC dataset and placing it in the expected local data directory.
 
-The dashboard can run with the selected deployment recordings and committed reports. Reproducing the complete dataset analysis requires downloading the full BIDMC dataset and placing it in the expected data directory.
+10. Research and Evaluation
+The project investigates:
 
-The main analysis scripts include:
+* Respiratory waveform filtering and breath detection.
+* Agreement between automatic detections and reference annotations.
+* Respiratory rate estimation accuracy.
+* Recording-wise generalization of machine learning models.
+* Effects of signal artifacts and annotation disagreements.
+* Differences between conventional signal processing and machine learning approaches.
 
-- `src/feature_extraction.py` — extracts respiratory features from the full dataset.
-- `src/prepare_ml_dataset.py` — prepares the supervised-learning dataset and records annotation-quality labels.
-- `src/train_models.py` — trains and evaluates the regression models.
+The results are intended for engineering and research evaluation.
 
-Run research scripts from the repository root so their relative input and output paths resolve correctly. Check each script's configuration before running it against a new dataset layout.
-
-## Limitations and future work
-
+11. Limitations and Future Scope
 Current limitations:
 
-- The current workflow analyzes recorded data; it does not acquire live patient signals from a wearable sensor.
-- The hosted dashboard contains only selected sample recordings.
-- Model performance and generalization are limited by the size and characteristics of the BIDMC dataset.
-- The system has not undergone clinical validation.
+* The system analyzes previously recorded physiological signals rather than acquiring live patient data.
+* Only two selected recordings are included in the public dashboard deployment.
+* The machine learning models have limitations in generalizing to unseen recordings.
+* The system has not undergone clinical validation.
 
-Potential extensions:
+Potential future improvements:
 
-- Real-time respiratory-sensor acquisition.
-- Embedded signal acquisition and edge processing.
-- More robust artifact rejection and signal-quality estimation.
-- Evaluation on additional datasets and subject-independent protocols.
-- Live streaming and monitoring interfaces.
+* Integration with real-time respiratory sensor acquisition.
+* Embedded hardware integration for physiological signal monitoring.
+* Improved artifact rejection and signal-quality assessment.
+* Evaluation on larger and more diverse datasets.
+* Real-time streaming and visualization.
 
-## Disclaimer
+12. Important Disclaimer
+This project is an engineering and research prototype intended for educational and experimental purposes. It is not a clinically validated medical device and must not be used for medical diagnosis, treatment decisions, or patient monitoring.
 
-This repository is intended for educational, engineering, and research use. It is not intended for diagnosis, treatment decisions, or clinical patient monitoring.
-
-## Author
-
-**C. Bhavith Sai**  
-B.Tech — Mechatronics Engineering  
-[GitHub profile](https://github.com/challabhavithsai0123-cell)
-
----
-
-**Project areas:** Biomedical Signal Processing · Respiratory Analysis · Python · SciPy · Machine Learning · Streamlit
+Project Category: Biomedical Signal Processing | Respiratory Analysis | Machine Learning | Python | Streamlit
